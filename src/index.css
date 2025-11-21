@@ -1,0 +1,12 @@
+body {
+  background: blue;
+  font-family: "Inter", sans-serif;
+}
+.weather-app-body {
+  background: white;
+  max-width: 680px;
+  margin: 50px, auto;
+  box-shadow: 0 30px 50px rgba(65, 50, 100, 0.05);
+  border-radius: 16px;
+  padding: 30px;
+}
