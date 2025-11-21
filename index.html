@@ -4,50 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="src/index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=National+Park:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=National+Park:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <div class="weather-app-body">
-    <header>
-      <form action="" class="search-city-form">
-        <input type="search" placeholder="Enter a city..." required class="enter-city-input"/>
-        <input type="submit" value="Search" class="submit-search-button"/>
-      </form>
-    </header>
+      <header>
+        <form action="" class="search-city-form">
+          <input
+            type="search"
+            placeholder="Enter a city..."
+            required
+            class="enter-city-input"
+          />
+          <input type="submit" value="Search" class="submit-search-button" />
+        </form>
+      </header>
 
-    <main>
-      <h1>Stirling</h1>
-      <div>
-      <p>
-        Monday 15:50, cloudy
-        <br />
-        Humidity: 45%, Wind 4.15km/h
-      </div>
-    </p>
-    <div>
-      ⛅ 8°C
-      </div>
-    </main>
-    <footer>
-      Coded by
-      <a href="https://github.com/breeclisby-art" target="_blank"
-        >Bree Clisby</a
-      >
-      and is open-sourced on
-      <a
-        href="https://github.com/breeclisby-art?tab=repositories"
-        target="_blank"
-        >GitHub</a
-      >
-      and hosted on
-      <a href="https://weatherappbclisby.netlify.app/" target="_blank"
-        >Netlify</a
-      >
-    </footer>
+      <main>
+        <div class="weather-app-data">
+          <div>
+            <h1 class="weather-app-city">Stirling</h1>
+
+            <p class="weather-app-detailed-data">
+              Monday 15:50, cloudy
+              <br />
+              Humidity: <span class="weather-app-figures">45%</span>, Wind
+              <span class="weather-app-figures">4.15km/h</span>
+            </p>
+          </div>
+
+          <div class="weather-app-temperature">
+            <div class="weather-app-icon">⛅</div>
+            <div class="current-temperature">
+              8
+              <div class="current-temperature-unit">°C</div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        Coded by
+        <a href="https://github.com/breeclisby-art" target="_blank"
+          >Bree Clisby</a
+        >
+        and is open-sourced on
+        <a
+          href="https://github.com/breeclisby-art?tab=repositories"
+          target="_blank"
+          >GitHub</a
+        >
+        and hosted on
+        <a href="https://weatherappbclisby.netlify.app/" target="_blank"
+          >Netlify</a
+        >
+      </footer>
     </div>
   </body>
 </html>
