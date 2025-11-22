@@ -1,25 +1,6 @@
-function refreshWeather(response) {
-  let currentTemperature = document.querySelector("#current-temperature");
-  let weatherAppCity = document.querySelector("#weather-app-city");
-  let weatherAppCondition = document.querySelector("#weather-app-condition");
-  let humidityValue = document.querySelector("#humidity-value");
-  let windSpeedValue = document.querySelector("#wind-speed-value");
-  let weatherAppTime = document.querySelector("#weather-app-time");
-  let date = new Date(response.data.time * 1000);
-
-  console.log(response.data);
-
-  currentTemperature.innerHTML = Math.round(response.data.temperature.current);
-  humidityValue.innerHTML = response.data.temperature.humidity;
-  weatherAppCity.innerHTML = response.data.city;
-  weatherAppCondition.innerHTML = response.data.condition.description;
-  weatherAppTime.innerHTML = formatDate(date);
-  windSpeedValue.innerHTML = response.data.wind.speed;
-}
-
 function formatDate(date) {
-  let minutes = date.getMinutes();
   let hours = date.getHours();
+  let minutes = date.getMinutes();
   let days = [
     "Sunday",
     "Monday",
@@ -40,6 +21,27 @@ function formatDate(date) {
   }
 
   return `${day} ${hours}:${minutes}`;
+}
+
+function refreshWeather(response) {
+  let currentTemperature = document.querySelector("#current-temperature");
+  let date = new Date(response.data.time * 1000);
+  let humidityValue = document.querySelector("#humidity-value");
+  let weatherAppCity = document.querySelector("#weather-app-city");
+  let weatherAppCondition = document.querySelector("#weather-app-condition");
+  let windSpeedValue = document.querySelector("#wind-speed-value");
+  let weatherAppIcon = document.querySelector("#weather-app-icon");
+  let weatherAppTime = document.querySelector("#weather-app-time");
+
+  currentTemperature.innerHTML = Math.round(response.data.temperature.current);
+  humidityValue.innerHTML = response.data.temperature.humidity;
+  weatherAppCity.innerHTML = response.data.city;
+  weatherAppCondition.innerHTML = response.data.condition.description;
+  weatherAppIcon.innerHTML = `<img src="${response.data.condition.icon_url}"
+      alt="${response.data.condition.icon}"
+    />`;
+  weatherAppTime.innerHTML = formatDate(date);
+  windSpeedValue.innerHTML = response.data.wind.speed;
 }
 
 function searchCity(city) {
