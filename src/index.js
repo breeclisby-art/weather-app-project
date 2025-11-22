@@ -42,6 +42,8 @@ function refreshWeather(response) {
     />`;
   weatherAppTime.innerHTML = formatDate(date);
   windSpeedValue.innerHTML = response.data.wind.speed;
+
+  getForecast(response.data.city);
 }
 
 function searchCity(city) {
@@ -58,26 +60,16 @@ function processCitySubmit(event) {
   searchCity(cityInput.value);
 }
 
-// function displayForecast() {
-//   let weatherAppForecast = document.querySelector("#weather-app-forecast");
+function getForecast(city) {
+  let apiKey = "21fcd3o9edfa304e81019t7faa2b944f";
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
 
-//   let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
+  axios.get(apiURL).then(displayForecast);
+}
 
-//   days.forEach(function (day) {
-//     weatherAppForecast.innerHTML += `
-//       <div class="weather-app-forecast-data">
-//         <div class="weather-app-forecast-day">${day}</div>
-//         <div class="weather-app-forecast-icon">⛅</div>
-//         <div class="weather-app-forecast-temperatures">
-//           <div class="temperature-max">8°</div>
-//           <div class="temperature-min">2°</div>
-//         </div>
-//       </div>
-//     `;
-//   });
-// }
+function displayForecast(response) {
+  console.log(response);
 
-function displayForecast() {
   let weatherAppForecast = document.querySelector("#weather-app-forecast");
 
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
@@ -102,5 +94,3 @@ let searchCityForm = document.querySelector("#search-city-form");
 searchCityForm.addEventListener("submit", processCitySubmit);
 
 searchCity("Adelaide");
-
-displayForecast();
