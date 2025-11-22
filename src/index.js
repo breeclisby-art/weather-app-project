@@ -38,7 +38,7 @@ function refreshWeather(response) {
   weatherAppCity.innerHTML = response.data.city;
   weatherAppCondition.innerHTML = response.data.condition.description;
   weatherAppIcon.innerHTML = `<img src="${response.data.condition.icon_url}"
-      alt="${response.data.condition.icon}"
+      alt="${response.data.condition.icon}" class="weather-app-icon" 
     />`;
   weatherAppTime.innerHTML = formatDate(date);
   windSpeedValue.innerHTML = response.data.wind.speed;
@@ -60,6 +60,13 @@ function processCitySubmit(event) {
   searchCity(cityInput.value);
 }
 
+function formatForecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
 function getForecast(city) {
   let apiKey = "21fcd3o9edfa304e81019t7faa2b944f";
   let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
@@ -72,21 +79,27 @@ function displayForecast(response) {
 
   let weatherAppForecast = document.querySelector("#weather-app-forecast");
 
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
+  weatherAppForecast.innerHTML = "";
 
-  weatherAppForecast.innerHTML = ""; // clear previous forecast
-
-  days.forEach(function (day) {
-    weatherAppForecast.innerHTML += `
-      <div class="weather-app-forecast-data">
-        <div class="weather-app-forecast-day">${day}</div>
-        <div class="weather-app-forecast-icon">⛅</div>
-        <div class="weather-app-forecast-temperatures">
-          <div class="temperature-max">8°</div>
-          <div class="temperature-min">2°</div>
-        </div>
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      weatherAppForecast.innerHTML += `
+    <div class="weather-app-forecast-data">
+      <div class="weather-app-forecast-day">${formatForecastDay(day.time)}</div>
+      <div ><img src="${day.condition.icon_url}"
+    alt="${day.condition.icon}" class="weather-app-forecast-icon"
+  /></div>
+      <div class="weather-app-forecast-temperatures">
+        <div class="temperature-max">${Math.round(
+          day.temperature.maximum
+        )}°</div>
+        <div class="temperature-min">${Math.round(
+          day.temperature.minimum
+        )}°</div>
       </div>
-    `;
+    </div>
+  `;
+    }
   });
 }
 
