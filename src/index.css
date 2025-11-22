@@ -69,6 +69,17 @@ footer {
   justify-content: space-between;
 }
 
+.weather-app-forecast {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.weather-app-temperature {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* 4. Weather Display Elements */
 
 .current-temperature {
@@ -78,6 +89,16 @@ footer {
 .current-temperature-unit {
   font-size: 28px;
   margin-top: 12px;
+}
+
+.temperature-max {
+  font-weight: 800;
+  padding: 8px;
+}
+
+.temperature-min {
+  opacity: 0.8;
+  padding: 8px;
 }
 
 .weather-app-city {
@@ -97,8 +118,23 @@ footer {
   font-weight: 500;
 }
 
-.weather-app-temperature {
+.weather-app-forecast-day {
+  text-align: center;
+  color: rgba(39, 33, 66, 0.7);
+  margin-bottom: 8px;
+}
+
+.weather-app-forecast-icon {
+  text-align: center;
+  font-size: 38px;
+}
+
+.weather-app-forecast-temperatures {
+  text-align: center;
+  color: #592941;
   display: flex;
+  justify-content: center;
+  margin-top: 8px;
 }
 
 .weather-app-icon {
