@@ -23,6 +23,27 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function formatForecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
+function searchCity(city) {
+  let apiKey = "21fcd3o9edfa304e81019t7faa2b944f";
+  let apiURL = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
+  axios.get(apiURL).then(refreshWeather);
+}
+
+function getForecast(city) {
+  let apiKey = "21fcd3o9edfa304e81019t7faa2b944f";
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+
+  axios.get(apiURL).then(displayForecast);
+}
+
 function refreshWeather(response) {
   let currentTemperature = document.querySelector("#current-temperature");
   let date = new Date(response.data.time * 1000);
@@ -46,37 +67,7 @@ function refreshWeather(response) {
   getForecast(response.data.city);
 }
 
-function searchCity(city) {
-  let apiKey = "21fcd3o9edfa304e81019t7faa2b944f";
-  let apiURL = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
-  axios.get(apiURL).then(refreshWeather);
-}
-
-function processCitySubmit(event) {
-  event.preventDefault();
-  let cityInput = document.querySelector("#enter-city-input");
-
-  searchCity(cityInput.value);
-}
-
-function formatForecastDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-  return days[date.getDay()];
-}
-
-function getForecast(city) {
-  let apiKey = "21fcd3o9edfa304e81019t7faa2b944f";
-  let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-
-  axios.get(apiURL).then(displayForecast);
-}
-
 function displayForecast(response) {
-  console.log(response);
-
   let weatherAppForecast = document.querySelector("#weather-app-forecast");
 
   weatherAppForecast.innerHTML = "";
@@ -84,23 +75,26 @@ function displayForecast(response) {
   response.data.daily.forEach(function (day, index) {
     if (index < 5) {
       weatherAppForecast.innerHTML += `
-    <div class="weather-app-forecast-data">
+      <div class="weather-app-forecast-data">
       <div class="weather-app-forecast-day">${formatForecastDay(day.time)}</div>
       <div ><img src="${day.condition.icon_url}"
-    alt="${day.condition.icon}" class="weather-app-forecast-icon"
-  /></div>
+      alt="${day.condition.icon}" class="weather-app-forecast-icon"
+      /></div>
       <div class="weather-app-forecast-temperatures">
-        <div class="temperature-max">${Math.round(
-          day.temperature.maximum
-        )}°</div>
-        <div class="temperature-min">${Math.round(
-          day.temperature.minimum
-        )}°</div>
+      <div class="temperature-max">${Math.round(day.temperature.maximum)}°</div>
+      <div class="temperature-min">${Math.round(day.temperature.minimum)}°</div>
       </div>
-    </div>
-  `;
+      </div>
+      `;
     }
   });
+}
+
+function processCitySubmit(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#enter-city-input");
+
+  searchCity(cityInput.value);
 }
 
 let searchCityForm = document.querySelector("#search-city-form");
