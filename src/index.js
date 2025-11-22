@@ -58,7 +58,49 @@ function processCitySubmit(event) {
   searchCity(cityInput.value);
 }
 
+// function displayForecast() {
+//   let weatherAppForecast = document.querySelector("#weather-app-forecast");
+
+//   let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
+
+//   days.forEach(function (day) {
+//     weatherAppForecast.innerHTML += `
+//       <div class="weather-app-forecast-data">
+//         <div class="weather-app-forecast-day">${day}</div>
+//         <div class="weather-app-forecast-icon">⛅</div>
+//         <div class="weather-app-forecast-temperatures">
+//           <div class="temperature-max">8°</div>
+//           <div class="temperature-min">2°</div>
+//         </div>
+//       </div>
+//     `;
+//   });
+// }
+
+function displayForecast() {
+  let weatherAppForecast = document.querySelector("#weather-app-forecast");
+
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
+
+  weatherAppForecast.innerHTML = ""; // clear previous forecast
+
+  days.forEach(function (day) {
+    weatherAppForecast.innerHTML += `
+      <div class="weather-app-forecast-data">
+        <div class="weather-app-forecast-day">${day}</div>
+        <div class="weather-app-forecast-icon">⛅</div>
+        <div class="weather-app-forecast-temperatures">
+          <div class="temperature-max">8°</div>
+          <div class="temperature-min">2°</div>
+        </div>
+      </div>
+    `;
+  });
+}
+
 let searchCityForm = document.querySelector("#search-city-form");
 searchCityForm.addEventListener("submit", processCitySubmit);
 
 searchCity("Adelaide");
+
+displayForecast();
