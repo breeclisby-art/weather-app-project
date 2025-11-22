@@ -127,7 +127,7 @@ footer {
 .weather-app-forecast-icon {
   margin: 0 auto;
   display: block;
-  width: 80%;
+  width: 70%;
 }
 
 .weather-app-forecast-temperatures {
@@ -139,5 +139,7 @@ footer {
 }
 
 .weather-app-icon {
-  width: 90%;
+  width: 75%;
+  display: block;
+  margin: 7px auto;
 }
